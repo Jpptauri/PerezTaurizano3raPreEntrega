@@ -9,5 +9,9 @@ Crear mascotas
 {% endblock h1_header %}
 
 {% block main %}
-
+<form action={% url "home:crear_mascotas" %} method = 'POST'>
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" name='Enviar'>
+</form>
 {% endblock main %}

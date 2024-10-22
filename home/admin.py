@@ -1,3 +1,4 @@
 from django.contrib import admin
+from home.models import Mascota
 
-# Register your models here.
+admin.site.register(Mascota)
