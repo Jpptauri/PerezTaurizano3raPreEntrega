@@ -7,6 +7,9 @@ from home.models import Mascota
 def home(request):
     return render(request,'index.html')
 
+def about_me(request):
+    return render(request,'about_me.html')
+
 def buscar_mascotas(request):
     
     formulario = BuscarMascotaFormulario(request.GET)
