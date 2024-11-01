@@ -5,10 +5,10 @@ from home.forms import CrearMascotaFormulario,BuscarMascotaFormulario,EditarMasc
 from home.models import Mascota
 
 def home(request):
-    return render(request,'index.html')
+    return render(request,'home/index.html')
 
 def about_me(request):
-    return render(request,'about_me.html')
+    return render(request,'home/about_me.html')
 
 def buscar_mascotas(request):
     
@@ -18,7 +18,7 @@ def buscar_mascotas(request):
         especie = formulario.cleaned_data.get('especie')
         mascotas = Mascota.objects.filter(nombre__icontains=nombre,especie__icontains=especie)
         
-    return render(request, 'buscar_mascotas.html',{'mascotas':mascotas,'form':formulario})
+    return render(request, 'home/buscar_mascotas.html',{'mascotas':mascotas,'form':formulario})
 
 def crear_mascotas(request):
     formulario = CrearMascotaFormulario()
@@ -30,11 +30,11 @@ def crear_mascotas(request):
             mascota.save()
             return redirect('home:buscar_mascotas')
         
-    return render(request,'crear_mascotas.html',{'form':formulario})
+    return render(request,'home/crear_mascotas.html',{'form':formulario})
 
 def ver_mascota(request,id):
     mascota = Mascota.objects.get(id=id)
-    return render(request,'ver_mascota.html',{'mascota':mascota})
+    return render(request,'home/ver_mascota.html',{'mascota':mascota})
 
 def eliminar_mascota(request,id):
     mascota = Mascota.objects.get(id=id)
@@ -53,4 +53,4 @@ def editar_mascota(request,id):
             mascota.especie = formulario.cleaned_data.get('especie')
             mascota.save()      
             return redirect('home:buscar_mascotas')
-    return render(request,'editar_mascota.html',{'mascota':mascota,'form':formulario})
+    return render(request,'home/editar_mascota.html',{'mascota':mascota,'form':formulario})
