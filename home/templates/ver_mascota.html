@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Ver mascota 
+{% endblock title_head %}
+
+{% block h1_header %}
+Ver mascotas
+{% endblock h1_header %}
+
+{% block main %}
+
+    <ul>
+        <li> Nombre:    {{mascota.nombre}}  </li>
+        <li> Edad:      {{mascota.edad}}    </li>
+        <li> Especie:   {{mascota.especie}} </li>
+    </ul>
+
+{% endblock main %}

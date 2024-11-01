@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Editar
+{% endblock title_head %}
+
+{% block h1_header %}
+Editar {{mascota}}
+{% endblock h1_header %}
+
+{% block main %}
+<form action={% url "home:editar_mascota" mascota.id%} method = 'POST'>
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" name='Enviar'>
+</form>
+{% endblock main %}
