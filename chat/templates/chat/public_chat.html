@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title_head %}
+Sala de chat
+{% endblock title_head %}
+
+{% block h1_header %}
+Mensajes
+{% endblock h1_header %}
+
+{% block main %}
+<p>Mensajes:</p>
+<ul>
+    {% for message in messages %}
+        <li>
+            <strong>{{ message.sender.username }}:</strong> {{ message.message }}
+            <span class="timestamp">{{ message.timestamp }}</span>
+        </li>
+    {% endfor %}
+</ul>
+<p>Escribir mensaje:</p>
+<form method="post">
+    {% csrf_token %}
+    <textarea name="message" rows="4" cols="50"></textarea>
+    <button type="submit">Enviar</button>
+</form>
+{% endblock main %}
+
+
