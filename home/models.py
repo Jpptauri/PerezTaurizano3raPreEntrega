@@ -8,11 +8,7 @@ class Mascota(models.Model):
     fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_edicion = models.DateTimeField(default=timezone.now)
     autor = models.CharField(max_length=100, default='Sin-Autor')
-    
+    avatar = models.ImageField(upload_to='mascotas',blank=True,null=True, default='mascotas/default-image.jpg')
     
     def __str__(self):
         return f'{self.id}: {self.especie} -> {self.nombre}, {self.edad} años.'
-    
-class DatosExtra(models.Model):
-    mascota = models.OneToOneField(Mascota,on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='mascotas',blank=True,null=True, default='mascotas/default-image.jpg')

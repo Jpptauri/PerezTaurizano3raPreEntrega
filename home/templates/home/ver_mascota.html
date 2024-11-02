@@ -9,7 +9,9 @@ Detalles sobre {{mascota.nombre}}
 {% endblock h1_header %}
 
 {% block main %}
-
+<a href="">  
+    <img src={{mascota.avatar.url}} alt="Imagen Mascota" height = '150px'>
+</a>
     <ul>
         <li> Nombre:    {{mascota.nombre}}  </li>
         <li> Edad:      {{mascota.edad}}    </li>

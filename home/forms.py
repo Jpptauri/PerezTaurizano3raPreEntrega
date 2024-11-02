@@ -7,8 +7,9 @@ class MascotaFormulatioBasico(forms.Form):
 
     
 class CrearMascotaFormulario(MascotaFormulatioBasico): ...
-class EditarMascotaFormulario(MascotaFormulatioBasico): ...
-
+class EditarMascotaFormulario(MascotaFormulatioBasico):
+    avatar = forms.ImageField(required=False)
+    
 class BuscarMascotaFormulario(forms.Form):
     nombre = forms.CharField(max_length=20,required=False)
     especie = forms.CharField(max_length=20,required=False)

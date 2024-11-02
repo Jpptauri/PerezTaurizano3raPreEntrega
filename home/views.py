@@ -49,12 +49,13 @@ def editar_mascota(request,id):
     formulario = EditarMascotaFormulario(initial={'nombre':mascota.nombre,'edad':mascota.edad,'especie':mascota.especie})
     
     if request.method == 'POST':
-        formulario = EditarMascotaFormulario(request.POST) 
+        formulario = EditarMascotaFormulario(request.POST,request.FILES) 
         if formulario.is_valid():
             mascota.nombre = formulario.cleaned_data.get('nombre')
             mascota.edad = formulario.cleaned_data.get('edad')
             mascota.especie = formulario.cleaned_data.get('especie')
-            #mascota.comentarios = formulario.cleaned_data.get('especie')
+            new_avatar = formulario.cleaned_data.get('avatar')
+            mascota.avatar = new_avatar if new_avatar else mascota.avatar
             mascota.fecha_edicion = datetime.datetime.now()
             mascota.save()      
             return redirect('home:buscar_mascotas')
