@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.template import Template, Context, loader
 from home.forms import CrearMascotaFormulario,BuscarMascotaFormulario,EditarMascotaFormulario
 from home.models import Mascota
 from django.contrib.auth.decorators import login_required
+import datetime
+from usuarios.models import User
 def home(request):
     return render(request,'home/index.html')
 
@@ -28,6 +28,7 @@ def crear_mascotas(request):
         if formulario.is_valid():
             data = formulario.cleaned_data
             mascota = Mascota(nombre=data.get('nombre'),especie=data.get('especie'),edad=data.get('edad'))
+            mascota.autor = request.user.username
             mascota.save()
             return redirect('home:buscar_mascotas')
         
@@ -53,6 +54,8 @@ def editar_mascota(request,id):
             mascota.nombre = formulario.cleaned_data.get('nombre')
             mascota.edad = formulario.cleaned_data.get('edad')
             mascota.especie = formulario.cleaned_data.get('especie')
+            #mascota.comentarios = formulario.cleaned_data.get('especie')
+            mascota.fecha_edicion = datetime.datetime.now()
             mascota.save()      
             return redirect('home:buscar_mascotas')
     return render(request,'home/editar_mascota.html',{'mascota':mascota,'form':formulario})

@@ -5,7 +5,7 @@ Ver mascota
 {% endblock title_head %}
 
 {% block h1_header %}
-Ver mascotas
+Detalles sobre {{mascota.nombre}}
 {% endblock h1_header %}
 
 {% block main %}
@@ -14,6 +14,9 @@ Ver mascotas
         <li> Nombre:    {{mascota.nombre}}  </li>
         <li> Edad:      {{mascota.edad}}    </li>
         <li> Especie:   {{mascota.especie}} </li>
+        <li> Autor:   {{mascota.autor}} </li>
+        <li> Fecha de creacion:   {{mascota.fecha_creacion}} </li>
+        <li> Fecha de ultima modificacion: {{mascota.fecha_edicion}}</li>
     </ul>
 
 {% endblock main %}

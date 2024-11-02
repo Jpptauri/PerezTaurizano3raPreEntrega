@@ -10,7 +10,7 @@ Registro
 
 {% block main %}
 
-<form action=  {% url "usuarios:register" %} method="post"> 
+<form action=  {% url "usuarios:register" %} method="post" enctype='multipart/form-data'> 
 
     {% csrf_token %}
     {{form}}

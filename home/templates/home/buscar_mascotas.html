@@ -9,15 +9,16 @@ Buscar mascotas
 {% endblock h1_header %}
 
 {% block main %}
+
+{% if mascotas %}
 <form action={% url "home:buscar_mascotas" %}>
     {{form}}
     <input type="submit" name='Enviar'>
 </form>
-
-{% if mascotas %}
+<p>Nombre de las mascotas registradas:</p>
 <ul>
 {% for mascota in mascotas %}
-<li> {{mascota}} | 
+<li> {{mascota.nombre}} | 
     <a href="{% url "home:ver_mascota" mascota.id %}">Ver mas</a> | 
     <a href="{% url "home:eliminar_mascota" mascota.id %}">Eliminar</a> |
     <a href="{% url "home:editar_mascota" mascota.id %}">Editar</a> 
