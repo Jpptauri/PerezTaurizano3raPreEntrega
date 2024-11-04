@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import PublicChatMessage
+from .models import ChatPublico
 from django.contrib.auth.decorators import login_required
 
 @login_required 
-def public_chat(request):
+def chat_publico(request):
     if request.method == 'POST':
-        message = request.POST.get('message')
-        PublicChatMessage.objects.create(sender=request.user, message=message)
-        return redirect('chat:public_chat')
-    messages = PublicChatMessage.objects.order_by('-timestamp')[:10]
-    return render(request, 'chat/public_chat.html', {'messages': messages})
+        mensaje = request.POST.get('mensaje')
+        ChatPublico.objects.create(usuario=request.user, mensaje=mensaje)
+        return redirect('chat:chat_publico')
+    mensajes = ChatPublico.objects.order_by('-horario_envio')[:10]
+    return render(request, 'chat/chat_publico.html', {'mensajes': mensajes})

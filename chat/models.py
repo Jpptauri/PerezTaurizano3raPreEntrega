@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class PublicChatMessage(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE)
-    message = models.TextField()
-    timestamp = models.DateTimeField(auto_now_add=True)
+class ChatPublico(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    mensaje = models.TextField()
+    horario_envio = models.DateTimeField(auto_now_add=True)
 
